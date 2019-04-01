@@ -1,0 +1,20 @@
+// For Swift 5, xcode 10+ the requirement is to optionally chain reachability like descibed in the modified code below
+// it should replace the text in the ReadMe.
+// I hesitate to modify any of the ... so posting this as new file.  
+
+        reachability?.whenReachable = { reachability in
+            if reachability.connection == .wifi {
+                print("Reachable via WiFi")
+            } else {
+                print("Reachable via Cellular")
+            }
+        }
+        reachability?.whenUnreachable = { _ in
+            print("Not reachable")
+        }
+        
+        do {
+            try reachability?.startNotifier()
+        } catch {
+            print("Unable to start notifier")
+        }
